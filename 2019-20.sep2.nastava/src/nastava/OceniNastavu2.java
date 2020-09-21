@@ -21,12 +21,12 @@ public class OceniNastavu2 extends Application {
 
     private static Random random;
 
-    public OcenaKvaliteta napraviOcKv(String ocene[]){
-        List<Integer> korisno_lista = new ArrayList<>();
-        OcenaKvaliteta korisno = new OcenaKvaliteta(Kvalitet.KORISNO, korisno_lista);
+    public OcenaKvaliteta napraviOcKv(String ocene[], int rbr){
+        List<Integer> lista = new ArrayList<>();
+        OcenaKvaliteta rez = new OcenaKvaliteta(Kvalitet.izBroja(rbr), lista);
         for(String s : ocene)
-            korisno.dodajOcenu(Integer.parseInt(s));
-        return korisno;
+            rez.dodajOcenu(Integer.parseInt(s));
+        return rez;
     }
 
     public void start(Stage primaryStage) throws Exception {
@@ -94,11 +94,11 @@ public class OceniNastavu2 extends Application {
 
                         if(prateci_sadrzaj.equals("da")) {
                             nastavniMaterijal.put(new Tekstualni(naslov, format, true),
-                                    new OcenaKvaliteta[]{napraviOcKv(oceneKorisno), napraviOcKv(oceneInteresantno), napraviOcKv(oceneRazumljivo)});
+                                    new OcenaKvaliteta[]{napraviOcKv(oceneKorisno, 0), napraviOcKv(oceneInteresantno, 1), napraviOcKv(oceneRazumljivo,2)});
                         }
                         else if(prateci_sadrzaj.equals("ne")) {
                             nastavniMaterijal.put(new Tekstualni(naslov, format, false),
-                                    new OcenaKvaliteta[]{napraviOcKv(oceneKorisno), napraviOcKv(oceneInteresantno), napraviOcKv(oceneRazumljivo)});
+                                    new OcenaKvaliteta[]{napraviOcKv(oceneKorisno, 0), napraviOcKv(oceneInteresantno, 1), napraviOcKv(oceneRazumljivo,2)});
                         }
                     }
                     else{
@@ -117,7 +117,7 @@ public class OceniNastavu2 extends Application {
                         svidjanje = Integer.parseInt(broj_svidjanja);
 
                         nastavniMaterijal.put(new Video(naslov, format, duzina, pregledi, svidjanje),
-                                new OcenaKvaliteta[]{napraviOcKv(oceneKorisno), napraviOcKv(oceneInteresantno), napraviOcKv(oceneRazumljivo)});
+                                new OcenaKvaliteta[]{napraviOcKv(oceneKorisno, 0), napraviOcKv(oceneInteresantno, 1), napraviOcKv(oceneRazumljivo,2)});
                     }
                 }
                 for (Map.Entry<NastavniMaterijal, OcenaKvaliteta[]> n : nastavniMaterijal.entrySet()){
