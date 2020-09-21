@@ -19,7 +19,7 @@ public class OceniNastavu2 extends Application {
     private List<NastavniMaterijal> preporuceno = new ArrayList<>();
     private List<NastavniMaterijal> ocenjeno = new ArrayList<>();
 
-    private static Random random;
+    private static Random random = new Random();
 
     public OcenaKvaliteta napraviOcKv(String ocene[], int rbr){
         List<Integer> lista = new ArrayList<>();
